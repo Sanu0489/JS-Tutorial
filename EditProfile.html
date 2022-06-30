@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="fontawesome-free-5.15.4-web\css\all.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
+    <title>Edit Contact</title>
+    <style type="text/css">
+      <style type="text/css" > *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        height: 100vh;
+        background-color: #12121e;
+      }
+      .container {
+        max-width: 428px;
+        margin: 0 auto;
+        background-color: #313438;
+        color: #fff;
+      }
+      .hero {
+        background: rgb(2, 0, 36);
+        background: linear-gradient(
+          90deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(14, 198, 29, 1) 0%,
+          rgba(93, 125, 10, 1) 100%,
+          rgba(0, 212, 255, 1) 100%
+        );
+        padding: 2em 0;
+      }
+      .back-btn {
+        font-size: 1.7em;
+        padding-left: 1em;
+      }
+      .heroinfo {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+      }
+      i {
+        font-size: 1.5em;
+      }
+      .relationship {
+        width: 6em;
+        text-align: center;
+        padding: 0.4em 0.5em;
+        border-radius: 100px;
+        border-top-left-radius: 0;
+        background-color: #75a85e;
+        font-size: 0.8em;
+      }
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
+      .contact-info {
+        padding: 3em 1.5em;
+      }
+      .info-line {
+        display: flex;
+        width: 80%;
+        margin: 0 auto;
+        align-items: center;
+        padding: 1em 2em;
+        margin-top: 2em;
+        border-radius: 20px;
+        box-shadow: inset 6px 6px 12px #2c2e32, inset -6px -6px 12px #363a3e;
+      }
+      p {
+        margin: 0;
+        padding-left: 2em;
+      }
+      .icon-gradient {
+        background: linear-gradient(
+          90deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(14, 198, 29, 1) 0%,
+          rgba(93, 125, 10, 1) 100%,
+          rgba(0, 212, 255, 1) 100%
+        );
+        border-radius: 100px;
+        padding: 0.5em;
+      }
+      #location {
+        padding: 0.5em 0.6em;
+      }
+      .type {
+        border: none;
+        background: none;
+        padding-left: 2em;
+        font-size: 1.2em;
+      }
+      .button-container {
+        padding: 2em 3.5em;
+      }
+      .update-contact {
+        display: flex;
+        width: 40%;
+        font-size: 10px;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0 auto;
+        padding: 1em 2em;
+        border-radius: 20px;
+        box-shadow: 6px 6px 12px #2c2e32, -6px -6px 12px #363a3e;
+      }
+      button {
+        border: none;
+        font-size: 1.3em;
+        padding-left: 1.5em;
+        outline: none;
+        color: #fff;
+        background-color: #313438;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="hero">
+        <a href="ContactList.html">
+          <i class="fas fa-arrow-circle-left"></i>
+        </a>
+        <div class="heroinfo">
+          <h1 class="name">Subhransu Porel</h1>
+          <p class="relationship">Friend</p>
+        </div>
+      </header>
+      <section class="contact-info">
+        <div class="info-line">
+          <i class="fas fa-user icon-gradient"></i>
+          <input
+            type="text"
+            class="type"
+            name="fullname"
+            placeholder="Enter Full Name"
+          />
+        </div>
+        <div class="info-line">
+          <i class="fas fa-smile icon-gradient"></i>
+          <input
+            type="text"
+            class="type"
+            name="relation"
+            placeholder="Relationship"
+          />
+        </div>
+        <div class="info-line">
+          <i class="fas fa-phone icon-gradient"></i>
+          <input
+            type="text"
+            class="type"
+            name="phone"
+            placeholder="Enter Phone Number"
+          />
+        </div>
+        <div class="info-line">
+          <i class="fas fa-sms icon-gradient"></i>
+          <input
+            type="text"
+            class="type"
+            name="sms"
+            placeholder="Type Mesage"
+          />
+        </div>
+        <div class="info-line">
+          <i class="fas fa-sms text icon-gradient"></i>
+          <input
+            type="text"
+            class="type"
+            name="relation"
+            placeholder="Relationship"
+          />
+        </div>
+        <div class="info-line">
+          <i class="fas fa-envelope icon-gradient"></i>
+          <input type="text" class="type" name="email" placeholder="Email" />
+        </div>
+        <div class="info-line">
+          <i id="location" class="fas fa-map-marker-alt icon-gradient"></i>
+          <input
+            type="text"
+            class="type"
+            name="address"
+            placeholder="Address"
+          />
+        </div>
+      </section>
+      <selection class="button-container">
+        <a href="ContactList.html">
+          <div class="update-contact">
+            <i class="fas fa-check-circle icon-gradient">
+              <span>Save Contact</span>
+            </i>
+          </div>
+        </a>
+      </selection>
+
+      <selection class="button-container">
+        <a href="ContactList.html">
+          <div class="update-contact">
+            <i class="fas fa-trash icon-gradient">
+              <span>Delete Contact</span>
+            </i>
+          </div>
+        </a>
+      </selection>
+    </div>
+  </body>
+</html>

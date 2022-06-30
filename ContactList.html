@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="fontawesome-free-5.15.4-web\css\all.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
+    <title>Contact List</title>
+    <style type="text/css">
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        height: 100vh;
+        background-color: #12121E;
+      }
+      .container {
+        max-width: 428px;
+        margin: 0 auto;
+        background-color: #313438;
+        color: #fff;
+      }
+      .header {
+        display: flex;
+        justify-content: space-evenly;
+        background: rgb(2, 0, 36);
+        background: linear-gradient(
+          90deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(14, 198, 29, 1) 0%,
+          rgba(93, 125, 10, 1) 100%,
+          rgba(0, 212, 255, 1) 100%
+        );
+        padding: 2em 0;
+        align-items: center;
+      }
+      .contact-search {
+        font-size: 1.2em;
+        padding: 0.3em;
+        border-radius: 100px;
+        border: 1px solid #fff;
+        outline: none;
+      }
+      i {
+        font-size: 1.5em;
+      }
+      .contact-name {
+        font-size: 1.2em;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        list-style: none;
+      }
+      hr {
+        border: 2px solid #494a4b;
+      }
+      .list_item {
+        list-style: none;
+      }
+      .relationship {
+        width: 6em;
+        text-align: center;
+        padding: 0.4em 0.5em;
+        border-radius: 100px;
+        border-top-left-radius: 0;
+        background-color: #75a85e;
+        font-size: 0.8em;
+      }
+      .contact-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1.5em;
+        transition: 0.3s;
+      }
+      .contact-section:hover {
+        background-color: #484948;
+      }
+      .text {
+        padding-left: 1em;
+      }
+      a{
+          text-decoration: none;
+          color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <form action="" class="search-bar">
+          <input
+            type="search-name"
+            class="contact-search"
+            name="search-area"
+            placeholder="serach-name"
+          />
+        </form>
+        <a href="EditProfile.html">
+          <i class="fas fa-plus-circle"></i>
+        </a>
+      </header>
+      <selection class="contacts-library">
+        <ul class="contacts-list"> 
+        <!--
+          <a href="ContactProfile.html">
+            <div class="contact-section">
+              <li class="list_item">
+                <p class="contact-name">Subhransu Porel</p>
+                <p class="relationship">Friend</p>
+              </li>
+
+              <li class="list_item">
+                <i class="fas fa-phone"></i>
+                <i class="fas fa-sms text"></i>
+              </li>
+            </div>
+          </a>
+          <hr />
+          <a href="ContactProfile.html">
+            <div class="contact-section">
+              <li class="list_item">
+                <p class="contact-name">Arpita Metia</p>
+                <p class="relationship">Family</p>
+              </li>
+
+              <li class="list_item">
+                <i class="fas fa-phone"></i>
+                <i class="fas fa-sms text"></i>
+              </li>
+            </div>
+          </a>
+          <hr />
+          <a href="ContactProfile.html">
+            <div class="contact-section">
+              <li class="list_item">
+                <p class="contact-name">Arjya Laik</p>
+                <p class="relationship">Friend</p>
+              </li>
+
+              <li class="list_item">
+                <i class="fas fa-phone"></i>
+                <i class="fas fa-sms text"></i>
+              </li>
+            </div>
+          </a>
+          <hr />
+          <a href="ContactProfile.html">
+            <div class="contact-section">
+              <li class="list_item">
+                <p class="contact-name">Pallav Raj</p>
+                <p class="relationship">Work</p>
+              </li>
+
+              <li class="list_item">
+                <i class="fas fa-phone"></i>
+                <i class="fas fa-sms text"></i>
+              </li>
+            </div>
+          </a>
+          <hr />
+          <a href="ContactProfile.html">
+            <div class="contact-section">
+              <li class="list_item">
+                <p class="contact-name">Snehasish Koley</p>
+                <p class="relationship">Friend</p>
+              </li>
+
+              <li class="list_item">
+                <i class="fas fa-phone"></i>
+                <i class="fas fa-sms text"></i>
+              </li>
+            </div>
+          </a>
+          <hr /> 
+          -->
+        </ul>
+      </selection>
+    </div>
+    <script type="text/javascript">
+    let contactList =[{
+              'Name':'Subhransu Porel',
+              'Relationship':'Friend',
+              'Phone':8116074024,
+              'Email': 'sanu0489@gmail.com',
+              'Address': 'Amta Ardhya Bari'
+              },
+              {
+              'Name':'Arpita Metia',
+              'Relationship':'Family',
+              'Phone':7980500281,
+              'Email': 'arpitametia@gmail.com',
+              'Address': 'Jujersha Minibazar'
+              },
+              {
+              'Name':'Arjya Laik',
+              'Relationship':'Friend',
+              'Phone':8116074024,
+              'Email': 'arjya.laik@gmail.com',
+              'Address': '3E Bidisha Apartment ChinarPark'
+              }
+              ];
+    function init(){
+        let ul = document.querySelector('ul');
+     for(i= 0; i< contactList.length; i++)
+     {   
+        let a = document.createElement('a');
+        a.setAttribute('href','ContactProfile.html');
+        let newDivElement = document.createElement('div');
+        newDivElement.className ="contact-section";
+        let List = document.createElement('li');
+        List.className = 'list_item';
+        ul.appendChild(a);
+        a.appendChild(newDivElement);
+        newDivElement.appendChild(List);
+        let name = document.createElement('p');
+        name.className = 'contact-name';
+        name.innerText = contactList[i].Name;
+        let relationship = document.createElement('p');
+        relationship.className = 'relationship';
+        relationship.innerText = contactList[i].Relationship;
+        List.appendChild(name);
+        List.appendChild(relationship);
+        let iconLink = document.createElement('li');
+        let phoneIcon = document.createElement('i');
+        let smsIcon = document.createElement('i');
+        let hr = document.createElement('hr');
+        iconLink.className='item_list';
+        phoneIcon.className='fas fa-phone';
+        smsIcon.className='fas fa-sms text';
+        ul.appendChild(hr);
+        newDivElement.appendChild(iconLink);
+        iconLink.appendChild(phoneIcon);
+        iconLink.appendChild(smsIcon);
+     }
+     console.log(ul);
+     
+    }
+    init();
+    </script>   
+  </body>
+</html>

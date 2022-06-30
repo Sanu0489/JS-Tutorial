@@ -1,0 +1,821 @@
+Topic Closure:
+
+In JavaScript, the inner function can access the variable declared in its Lexical Scope (Parent function). This special feature is known as Closure.
+
+
+function x(){
+ for (let i =1; i<=5; i++){  
+    setTimeout(function(){
+      console.log(i);
+    },i * 1000);
+ }
+}
+
+
+function y(){
+ for (var i =1; i<=5; i++){  
+    setTimeout(function(){
+      console.log(i);
+    },i * 1000);
+ }
+}
+
+
+function z(){
+ for (var i =1; i<=5; i++){
+    function close(x){  
+    setTimeout(function(){
+      console.log(x);
+    },x * 1000);
+  }
+   close(i)
+ }
+ console.log("Hi Sanu... Good Morning!!")
+}
+
+--------------------------
+
+function xyz(){
+ for (var i =1; i<=5; i++){
+    function close(x){  
+    setTimeout(function(){
+      console.log(x);
+    },x * 1000);
+  }
+   close(i)
+   console.log("Hello...!!!")
+ }
+ console.log("Hi Sanu... Good Morning!!")
+};
+--------------------
+
+function abc(){
+ for (var i =1; i<=5; i++){
+    function close(x){  
+    setTimeout(function(){
+      console.log(x);
+      console.log("Hello...!!!")
+    },x * 1000);
+  }
+   close(i)
+ }
+ console.log("Hi Sanu... Good Morning!!")
+};
+
+---------------------------
+
+What is Block Scope in Javascript? 
+
+In JS, if a variable is declared with let keyword then it will be accesible with in that particular block where it is declared only. 
+One cannot access outside of it. The scope of such variable is known as Block Scope.
+
+let and Const variable has Block scope only. Var has global scope. 
+
+CallStack -------  In JS everything is excuted in callstack
+
+Global Execution Context --------- Whenever any execution starts in JS engine a GEC has been created and it will be pushed to call stack
+
+Event Loop ---- It always checks into the Callback Queue. If anything found it will pushed to Call stack for execution
+
+Callback Queue ----- JS is single Threaded. It waits for none. So, if the function is asynchronous, after comletion it will be moved to Call back Queue
+
+Microtask Queue ----------- Same as call back Queue with Higher Priority
+
+What is First Class Function ??
+
+JS has special feature. It can accept a function with in another function as an argument and return a function just like any another variable. 
+One can assign a function to a variable also. In such case, the higher Order function is known as First Class function.
+
+A programming language is said to have First class function when the function in that language are treated as any other variable.
+
+Undefined and Not defined are different thing in Javascript. Undefined is a Primitive data type in Javascript.
+Array and Function both are reffered to as Object or Reference type in JavaScript.
+
+-------------------------------------------------------
+
+Hoisting: - Unlike any other language in JavaScript, the JS engine allocates memory before the execution of a single line JavaScript code. 
+It creates Global Execution Context and allocates memory for each variable and function.
+Initially any variable hold the value as undefined.This overall concept is known as Hoisting in JavaScript.
+
+We can declare a variable in JavaScript with three different Keyword as 'var', 'let' and 'const'.
+Among them var belongs to the window object. It has its global scope. But let and const don't have the global scope. Instead They have block scope.
+
+Before initialization, we can access global variable which is declared with var keyword. Although the value is undefined then. 
+
+We shall get Reference error as the variable is not defined while trying to access a variable with let keyword befor its initialization.
+
+If we declare a variable as constant and try to reassign the same variable, we shall get a type Error as the value of constant variable cannot be reassigned.
+
+Temporal Dead Zone -- 
+In case of let and contant variable, once the variable is decalred but its initialization is not done. 
+Then we can say that the variable is in Temporal Dead Zone.
+
+In GEC the memory allocation for var, let and const variables are done differently.
+var is stored in GLobal memory whereas let and const are stored in script memory.
+
+----------------------------------------------------
+What will be the o/p of the below code snippet?
+
+console.log(a);
+console.log(b);
+let a = 10;
+var b = 100;
+
+Reference Error : a is not defined
+----------------------------------------------------------
+
+Temporal Dead Zone ----------------- zone between a variable decalaration and its intialization
+
+console.log(a);
+console.log(b);
+let a = 10;
+var a = 100;
+
+Will throw a Syntax error as variable has already been declared
+
+console.log(a);
+const a = 100;
+a = 10;
+
+Reference error: Cannot access 'a' before intialization 
+
+const a;
+a = 10;
+console.log(a);
+
+Syntax Error: Missing Initalizer in const variable
+
+const a= 80;
+a = 10;
+console.log(a);
+
+Uncaught TypeError: Assignment to constant variable
+
+What are the CSS Selector in JavaSvript?
+
+In a web page, if we need to style a particular element we have to provide a identifier to the element to acess the same through JavaScript. 
+To Access each element, we can use different CSS selectors. 
+
+i.e. getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll
+
+--------------------------------------------------------------
+What is Callback in JavaScript??
+
+In Javascript we can call a function from another function. Such function is known as callback function. 
+We can pass the callback function to the Higher order function as an argument just like any other variable.
+
+Until the completion of first function, the second one waits. At the end of the Higher Order function, the callback function is called.
+
+-----------------------------------------------------------------
+
+Promises in JavaScript:-
+
+Whenever a function is executing in JavaScript, it can return a function as Promise which will take two parameters as resolve and reject. 
+Generally we consider Promises in case of asynchronous process. 
+
+The Promise object supports two properties: state and result.
+It can bed either pending or Succesful or Rejected state.
+
+------------------------------------------------------------------------
+
+function sum(){
+  let sum = 0;
+  for(let i in arguments){
+     sum+= arguments[i];
+  }
+  console.log(`The Sum is ${sum}`);
+}
+
+Will return 25
+
+-----------------------------------
+
+let arr =[10,7,8];
+
+let val = sum("Sanu", ...arr);
+
+console.log(`The Sum is ${val}`);
+
+Will return '0Sanu1078'
+
+---------------------------
+REST operator (...args in the below example is used with the help of REST operator)
+
+function sum1(name, ...args){
+  console.log(arguments);
+   
+  document.write(`Hi, My name is ${name} </br>`);
+  let sum = 0;
+  for(let i in args){
+     sum+= args[i];
+  }
+  console.log(`I have got ${sum} marks`);
+};
+ 
+sum1("Sanu", 76,85,69);
+
+o/p -  Hi, My name is Sanu
+I have got 230 marks
+
+args will be Placed at the end always. 
+-----------------------------------------
+
+Spread operator is used to concateniate two or more objects in Javascript.
+
+----------------------------------------
+const c;
+console.log(`c: ${c}`);
+
+c = 10;
+console.log(`c: ${c}`);
+
+It will Through an error as :
+Uncaught SyntaxError: Missing initializer in const declaration
+
+Beacuse We can't just declare a variable as const without initializing it. Otherwise it will throw a Syntax error in JavaScript.
+
+--------------------------------------------------
+
+var c;
+console.log(`c: ${c}`);
+
+c = 10;
+console.log(`c: ${c}`);
+
+o/p - 
+ c: undefined
+ c: 10
+
+Initially the variable c is in Temporal Dead Zone before it's value initialization
+
+let l;
+console.log(`l: ${l}`);
+
+c = 10;
+console.log(`l: ${l}`);
+
+The result will be same.
+-------------------------------
+Async and Await:-
+
+To make a function async, one just need to use async keyword before the function while declaring the same. async returns promise (Promise value and Promise Status).
+Await just make the function to wait until its execution completes. 
+
+
+async function test(){
+
+   console.log('Inside test function');
+   const response = await fetch('https://jsonplaceholder.typicode.com/users');
+   console.log('Before Response');
+   const users = await response.json();
+   console.log('Finally Resolved');
+   return users;
+}
+
+console.log('Before Calling test');
+let a = test();
+console.log('After Calling test');
+console.log(a);
+a.then(data => console.log(data));
+console.log('----------- The END ------------');
+
+o/p:-
+
+  Before Calling test
+  Inside test function
+  After Calling test
+  Promise {<pending>}
+----------- The END ------------
+  Before Response
+  Finally Resolved
+ 
+(10) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+0: {id: 1, name: "Leanne Graham", username: "Bret", email: "Sincere@april.biz", address: {…}, …}
+1: {id: 2, name: "Ervin Howell", username: "Antonette", email: "Shanna@melissa.tv", address: {…}, …}
+2: {id: 3, name: "Clementine Bauch", username: "Samantha", email: "Nathan@yesenia.net", address: {…}, …}
+3: {id: 4, name: "Patricia Lebsack", username: "Karianne", email: "Julianne.OConner@kory.org", address: {…}, …}
+4: {id: 5, name: "Chelsey Dietrich", username: "Kamren", email: "Lucio_Hettinger@annie.ca", address: {…}, …}
+5: {id: 6, name: "Mrs. Dennis Schulist", username: "Leopoldo_Corkery", email: "Karley_Dach@jasper.info", address: {…}, …}
+6: {id: 7, name: "Kurtis Weissnat", username: "Elwyn.Skiles", email: "Telly.Hoeger@billy.biz", address: {…}, …}
+7: {id: 8, name: "Nicholas Runolfsdottir V", username: "Maxime_Nienow", email: "Sherwood@rosamond.me", address: {…}, …}
+8: {id: 9, name: "Glenna Reichert", username: "Delphine", email: "Chaim_McDermott@dana.io", address: {…}, …}
+9: {id: 10, name: "Clementina DuBuque", username: "Moriah.Stanton", email: "Rey.Padberg@karina.biz", address: {…}, …}
+length: 10
+__proto__: Array(0)
+
+--------------------------------------------
+In the below mentioned example the let variable 'l' was in Temporal Dead Zone. 
+So, one can't access the variable until and unless it is intialized to a specific value.
+
+let x = function(){
+if(true){
+  console.log(v);
+  console.log(l);
+  var v = 2;
+  let l = 1;
+}
+
+};
+
+x();
+
+This Will a Refernce error as cannot access 'l' before Initialization.
+---------------------------------------------------------------------------
+Promises in JavaScript:-
+
+
+function prom(){
+return new Promise(function(resolve,reject){
+console.log('Please wait... Fetching Data')
+const response = fetch('https://jsonplaceholder.typicode.com/users');
+if(response){
+  console.log('Data Has been retrievd sucessfully');
+  resolve(response)
+  }else{
+  console.log('Unable to fetch the data')
+  reject(response) 
+  }
+ console.log('----Wait------------ We are Preparing the data for you');
+});
+}
+
+let onFulfilment = (result) =>{
+console.log('Inside onFulfilment');
+if(result.status == 200){
+ async function users(result){
+ let u = await result.json();
+   console.log(u);
+   }
+ users(result);
+ }
+}
+
+let onRejection = (error) =>{
+ console.log('Inside onRejection');
+ console.log(error);
+}
+
+prom().then(onFulfilment).catch(onRejection);
+
+----------------------------------------------------------------
+
+function prom(complete){
+return new Promise(function(resolve,reject){
+console.log('Please wait... Fetching Data')
+setTimeout(()=>{ 
+if(complete){
+  resolve('I am Successful');
+  }else{
+  reject('I am Failure');
+  }
+ },3000)
+});
+}
+
+let onFulfilment = (result) =>{
+ console.log(result);
+}
+
+let onRejection = (error) =>{
+ console.log(error);
+}
+
+prom(true).then(onFulfilment).catch(onRejection);
+-------------------------------------------------------------------
+Call, Apply and Bind in Javascript (Polyfill)
+---------------------------------------------------------------------------------
+
+
+function x(){
+let name = {
+  firstname: "Subhransu",
+  lastname: "Porel"
+}
+let name2 = {
+  firstname: "Rishabh",
+  lastname: "Pant"
+}
+let name3 = {
+  firstname: "Rahul",
+  lastname: "Dravid"
+}
+let name4 = {
+  firstname: "Sachin",
+  lastname: "Tendulkar"
+}
+
+let printName = function (hometown, state, country){
+	console.log(this.firstname +" " + this.lastname +" from  "+ hometown +", "+ state +", "+country)
+}
+
+
+console.log(printName.call(name2, "Delhi" , "UP", "India")); 
+console.log(printName.apply(name3, ["Bangalore", "Karnatak", "India"]));
+
+let printMyName = printName.bind(name, "Kolkata" , "West Bengal", "India");
+printMyName();
+
+Function.prototype.mybind = function(...args){
+  let obj= this;
+  params = args.slice(1);
+  return function(...args2){
+    obj.apply(args[0], [...params, ...args2]);
+ }
+}
+
+let printMyName2 = printName.mybind(name4, "Mumbai", "Maharastra");
+printMyName2("India");
+console.log(printMyName);
+console.log(Function.prototype.mybind);
+}
+x();
+
+--------------------------------------------------
+Function Currying in Javascript
+-------------------------------------------
+
+
+function y(){
+let multiply = function(x,y){
+console.log(x*y);
+}
+
+ let multiplyByTwo = multiply.bind(this, 2, 9);
+ multiplyByTwo(18);
+
+ let multiplyByThree = multiply.bind(this);
+ console.log(this);
+ multiplyByThree(3, 22);
+}
+y();
+-----------------------------------
+Interview Question on Event Loop, setTimeout and setInterval
+---------------------------------------------------------------
+
+function x(){
+let c = 0;
+
+let timer = setInterval(()=>{
+  console.log(c++);
+  },200);
+
+console.log("Welcome");
+
+setTimeout(()=>{
+  clearInterval(timer)
+},2000)
+
+}
+x();
+
+o/p :-
+
+Line No:8 Welcome
+Line No:5 0
+Line No:5 1
+Line No:5 2
+Line No:5 3
+Line No:5 4
+Line No:5 5
+Line No:5 6
+Line No:5 7
+Line No:5 8
+Line No:5 9
+--------------------------
+--------------------------
+let nums = [1, 2, 2, 3, 4, 4] ;
+console.log(new Set(nums));
+--------------------------------
+
+function x(){
+ var v = "Sanu";
+ let l = "Bristi";
+ 
+ var check = 
+  function internal(){
+  var v ="Subransu";
+  let l ="Arpita"; 
+ 
+  console.log(v);
+  console.log(l);
+ }
+
+ console.log(v);
+ console.log(l);
+
+ check();
+}
+x();
+-------------------------------------
+let x = function(){
+  return;
+  {
+	message: 'hi';
+ }
+}
+
+console.log(x());
+--------------------------------------------------
+const arr = [10, 5, 9 , 18, 27, 36, 8, 21, 17];
+console.log(arr.sort((a,b)=>{
+return (a - b);
+}));
+
+
+----------------------------------
+
+Shallow Copy:
+
+var a = {a: 20};
+var b = a;
+b.a = 40;
+console.log(a);
+console.log(b);
+
+o/p- {a: 40}
+     {a: 40}
+
+-------------------
+
+Deep Copy:
+
+var a = {a: 20};
+var b = {...a};
+b.a = 40;
+console.log(a);
+console.log(b);
+
+o/p- {a: 20}
+     {a: 40}
+
+------------------------
+
+const users = [
+{firstName:'Sanu',lastName:'Porel',age: 32},
+{firstName:'Arpita',lastName:'Metia',age:23},
+{firstName:'Mampu',lastName:'Mondal',age:28},
+{firstName:'Bristi',lastName:'Porel',age:23},
+{firstName:'Arjya',lastName:'Layek',age:30},
+]
+
+const output = users.filter((x) => x.age < 30).map((y)=> y.firstName + " "+ y.lastName);
+
+console.log(output);
+
+----------------------------------------------
+const users = [
+{firstName:'Sanu',lastName:'Porel',age: 32},
+{firstName:'Arpita',lastName:'Metia',age:23},
+{firstName:'Mampu',lastName:'Mondal',age:28},
+{firstName:'Bristi',lastName:'Porel',age:23},
+{firstName:'Arjya',lastName:'Layek',age:30},
+]
+
+const output = users.filter((x) => x.lastName === 'Porel').map((y)=> y.firstName + " "+ y.lastName);
+
+console.log(output);
+-----------------------------------------------
+const users = [
+{firstName:'Sanu',lastName:'Porel',age: 32},
+{firstName:'Arpita',lastName:'Metia',age:23},
+{firstName:'Mampu',lastName:'Mondal',age:28},
+{firstName:'Bristi',lastName:'Porel',age:23},
+{firstName:'Arjya',lastName:'Layek',age:30},
+]
+
+const output = users.reduce(function(acc, curr){
+ if(acc[curr.age]){
+  acc[curr.age] = ++  acc[curr.age];
+ }else{
+ acc[curr.age] = 1
+ }
+  return acc; 
+},{});
+
+console.log(output);
+-----------------------------------------------
+
+const users = [
+{firstName:'Sanu',lastName:'Porel',age: 32},
+{firstName:'Arpita',lastName:'Metia',age:23},
+{firstName:'Mampu',lastName:'Mondal',age:28},
+{firstName:'Bristi',lastName:'Porel',age:23},
+{firstName:'Arjya',lastName:'Layek',age:30},
+]
+
+const output = users.reduce(function(acc, curr){
+ if(acc[curr.lastName]){
+  console.log(curr.firstName + " " + curr.lastName);
+  acc[curr.lastName] = ++ acc[curr.lastName];
+ }else{
+ acc[curr.lastName] = 1
+ }
+  return acc; 
+},{});
+
+console.log(output);
+--------------------------------------------------
+let obj1 = {"name":"Sanu","age":30,"sex":"Male"};
+let obj2 = {"city":"Kolkata", "zip":711401, "Phone":8116074024};
+
+let newObj = Object.assign({}, obj1, obj2);
+
+console.log(newObj);
+console.log(Object.keys(newObj));
+
+--------------------------------------
+
+const arr = [2, 8, 1, 8, 7, 6, 2, 5, 6, 1, 7, 9];
+arr.sort();
+console.log(arr);
+const len = arr.length;
+let b = [];
+
+for (i = 0; i< len; i++){
+ if(b.indexOf(arr[i])=== -1){
+     b.push(arr[i]);
+  } 
+}
+
+console.log(b);
+
+-------------------------------------------
+But here the complexity of the Program is very high Order of (n*n). So, Instead of Doing this, we can take a different approach
+--------------------------------------------------------------------------------------------------------------------------------
+const arr = [2, 8, 1, 8, 7, 6, 2, 5, 6, 1, 7, 9];
+arr.sort();
+console.log(arr);
+const len = arr.length;
+let b = [];
+var temp;
+
+for (i = 0; i< len; i++){
+ if(arr[i] !== temp){
+     b.push(arr[i]);
+    temp = arr[i];
+  } 
+}
+
+console.log(b);
+-----------------------------------------------------------------
+
+let profile = {name:'Sanu'};
+profile.age=30;
+console.log(profile);
+
+let newProfile = {...profile};
+newProfile.salary = 35000;
+console.log(newProfile);
+console.log(profile);
+console.log(profile.salary);
+
+----------------------------------------
+map, filter, reduce
+-----------------------------------------
+const arr = [10, 7, 6, 5, 8, 9, 12, 19, 23, 21];
+
+const findMax = arr.reduce(function(max,curr){
+  if(curr > max){
+   max = curr
+  }
+ return max
+},0)
+
+console.log(findMax); 
+
+o/p:-23
+-----------------------------------------------
+const ages = [10, 7, 6, 5, 8, 9, 12, 19, 23, 21];
+const adualt = arr.filter(x => x>=18).sort();
+console.log(adualt);
+-------------------------------------------------
+const marks = [27, 38, 32, 39, 55, 48, 19, 22, 18, 17, 30];
+const passMarks = marks.map(x => x+ 10).filter(y => y >= 30);
+console.log(passMarks);
+----------------------------------------------------
+const arr = [10, 7, 6, 5, 8, 9, 12, 19, 23, 21];
+
+const findMax = arr.reduce(function(max,curr){
+
+  if(curr > max){
+   max = curr
+  }
+ return max
+},0)
+
+console.log(findMax);
+---------------------------------
+const users = [
+{firstName:'Sanu',lastName:'Porel',age: 32},
+{firstName:'Arpita',lastName:'Metia',age:23},
+{firstName:'Mampu',lastName:'Mondal',age:28},
+{firstName:'Bristi',lastName:'Porel',age:23},
+{firstName:'Arjya',lastName:'Layek',age:30},
+]
+
+var op = {};
+const output = users.map(function(x){
+if(x.lastName){
+  op[x.lastName] = op[x.lastName].push(x.firstName)
+ }
+else{
+  op[x.lastName] = x.firstName;
+ }
+})
+
+console.log(output);
+
+
+{'Porel':['Sanu', 'Bristi'], 'Metia': ['Arpita'], 'Mondal':['Mampu'], 'Layek': ['Arjya']};
+----------------------------------------------------------------------------------------
+
+const users = [
+{firstName:'Sanu',lastName:'Porel',age: 32},
+{firstName:'Arpita',lastName:'Metia',age:23},
+{firstName:'Mampu',lastName:'Mondal',age:28},
+{firstName:'Bristi',lastName:'Porel',age:23},
+{firstName:'Arjya',lastName:'Layek',age:30},
+]
+
+const output = users.reduce(function(acc,curr){
+  if(curr.age < 30){
+    acc.push(curr.firstName)
+ }
+   return acc;
+},[])
+
+console.log(output);
+-----------------------------------------------------------------------------------------------
+const users = [
+{firstName:'Sanu',lastName:'Porel',age: 32},
+{firstName:'Arpita',lastName:'Metia',age:23},
+{firstName:'Mampu',lastName:'Mondal',age:28},
+{firstName:'Bristi',lastName:'Porel',age:23},
+{firstName:'Arjya',lastName:'Layek',age:30},
+]
+
+let temp ;
+const output = users.reduce(function(acc,curr){
+   if(acc[curr.lastName]){
+     acc[curr.lastName] = curr.firstName;
+     console.log(curr.lastName);
+     console.log(curr.firstName);
+   }else{
+    acc[curr.lastName] = curr.firstName; 
+    }
+  return acc
+},{})
+
+console.log(output);
+
+-----------------------------------------------
+Difference Between Slice and Splice in Javascript
+---------------------------------------------------
+
+let arr = [1, 2, 3, 4, 5, 6, 7];
+let arr2 = arr.slice(2,4);
+console.log(arr);
+console.log(arr2);
+
+
+o/p:-
+
+[1, 2, 3, 4, 5, 6, 7]
+[3, 4]
+
+let arr = [1, 2, 3, 4, 5, 6, 7];
+let arr2 = arr.splice(2,4);
+console.log(arr);
+console.log(arr2);
+
+o/p:-
+
+[1, 2, 7]
+[3, 4, 5, 6]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
