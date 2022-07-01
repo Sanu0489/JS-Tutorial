@@ -27,7 +27,7 @@
         width: 100%;
         height: 100%;
         background-color: #12121f;
-        color: #eee;  
+        color: #eee;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -57,7 +57,7 @@
         font-size: 3rem;
         font-weight: 400;
         text-transform: uppercase;
-        letter-spacing: 0.2rem;
+        lette-spacing: 0.2rem;
         margin-bottom: 1rem;
       }
       .month p {
@@ -100,13 +100,13 @@
         text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
         transition: background-color 0.2%;
       }
-    /*
+     /*
       .days div:hover:not(.today) {
         background-color: #262626;
         border: 0.2rem solid #777;
         cursor: pointer;
       }
-      */   
+     */
 
      .selectedDate{
       background-color: #262626;
@@ -131,79 +131,12 @@
       .weekends {
         color: red;
       }
-      .datetime{
-            width: 29.7%;
-            height: 10%;
-            color: #eee;
-            background: #167e56;
-            font-family: 'Franklin Gothic Medium';
-            border: 3px solid #eee;
-            padding: 15px 10px;
-            -webkit-box-reflect: below 1 px linear-gradient(transparent, rgba(255, 255, 255, 0.1));
-            transition: 0.5s;
-            transition-property: background, box-shadow;
-            position:relative;
-            justify-content: center;
-            text-align: center;
-            align-items: center;
-        }
-        .datetime:hover{
-            background: #2E94E3;
-            box-shadow: 0 0 3px #2E94E3;
-        }
-        .date{
-            font-size: 10px;
-            font-weight: 030px;
-            text-align: center;
-            letter-spacing: 3px; 
-        }
-        .time{
-            font-size: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .time span:not(last-child){
-            position:relative;
-            margin: 0 6px;
-            font-weight: 600;
-            text-align: center;
-            letter-spacing: 3px;
-        }
-        .time span :last-child{
-            background:#2E94E3;
-            font-size: 30px;
-            font-weight: 600px;
-            text-transform: uppercase;
-            margin-top: 10px;
-            padding: 0 5px;
-            border-radius: 3px;
-
-        }
-       #period:hover{
-            color:indigo;
-        }
     </style>
   </head>
-  <body onload="initClock()">
-    <div class="datetime"; style="display: flex";>
-      <div class="date"; style="display: none;">
-          <span id="dayname">Day</span>,
-          <span id="month">Month</span>,
-          <span id="daynum">00</span>
-          <span id="year">Year</span>
-      </div>
-      <div class="time">
-          <span id="hour" style="color:rgb(190, 90, 23)">00</span>:
-          <span id="minutes" style="color:rgb(172, 16, 172)">00</span>:
-          <span id="sec" style = "color: magenta;">00</span>
-          <span id="period" style="font-size:20px">AM</span>
-      </div>
-  </div>
-    <div class="container"; style="display: inline;"> 
+  <body>
+    <div class="container">
       <div class="calendar">
         <div class="month">
-           
           <i class="fas fa-angle-left prev mouse"><</i>
           <div class="date">
             <h1>August</h1>
@@ -267,86 +200,6 @@
       </div>
     </div>
     <script type="text/javascript">
-      function updateClock(){
-
-var now = new Date();
-console.log(now);
-var dname = now.getDay(),
-    mo = now.getMonth(),
-    dnum = now.getDate(),
-    yr = now.getFullYear(),
-    hou = now.getHours(),
-    min = now.getMinutes(),
-    sec = now.getSeconds(),
-    pe = "AM";
-    console.log(`dname: ${dname}`);
-    console.log(`mo : ${mo}`);
-    console.log(`dnum: ${dnum}`);
-    console.log(`yr: ${yr}`);
-    
-    
-    if(hou == 0){
-        hou = 12;
-    }
-    if(hou > 12){
-
-        hou = hou -12;
-        pe = "PM";
-    }
-
-    console.log(`hou: ${hou}`);
-    console.log(`min: ${min}`);
-    console.log(`sec: ${sec}`);
-    console.log(`pe: ${pe}`);
-
-    Number.prototype.pad = function(digits){
-        for(var n = this.toString(); n.length < digits; n = 0 + n){
-        return n;
-        }
-    }
-
-    var months = ["January","February","March","April","May","June",
-    "July","August","Sepetember","October","November","December"];
-
-    var week =["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-
-    var ids =["dayname","month","daynum","year","hour","minutes","sec","period"];
-
-    var values=[week[dname],months[mo], dnum, yr, hou,min,sec,pe];
-
-    console.log(values);
-    console.log(ids);
-    
-    document.getElementById("dayname").innerHTML = values[0];
-    console.log(document.getElementById("dayname").innerHTML);
-
-    document.getElementById("month").innerHTML = values[1];
-    console.log(document.getElementById("month").innerHTML);
-
-    document.getElementById("daynum").innerHTML = values[2];
-    console.log(document.getElementById("daynum").innerHTML);
-
-    document.getElementById("year").innerHTML = values[3];
-    console.log(document.getElementById("year").innerHTML);
-
-    document.getElementById("hour").innerHTML = values[4];
-    console.log(document.getElementById("hour").innerHTML);
-
-    document.getElementById("minutes").innerHTML = values[5];
-    console.log(document.getElementById("minutes").innerHTML);
-
-    document.getElementById("sec").innerHTML = values[6];
-    console.log(document.getElementById("sec").innerHTML);
-
-    document.getElementById("period").innerHTML = values[7];
-    console.log(document.getElementById("period").innerHTML);
-    
-}
-function initClock(){
-updateClock();
-window.setInterval("updateClock()",1000)
-}
-
       const date = new Date();
 
       function renderCalendar() {
