@@ -170,6 +170,8 @@ Until the completion of first function, the second one waits. At the end of the 
 
 Promises in JavaScript:-
 
+Promise object represents an eventual completion or failure of an asynchronous Javascript operation. 
+
 Whenever a function is executing in JavaScript, it can return a function as Promise which will take two parameters as resolve and reject. 
 Generally we consider Promises in case of asynchronous process. 
 
