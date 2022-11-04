@@ -436,7 +436,7 @@ x();
 Function Currying in Javascript
 -------------------------------------------
 Function Currying is a technique in functional programmimg, transformation of the function of multiple arguments into several functions of a single argument in sequence.
-There are two ways to achieve currying in Javascript. Either using Bind method or by using Closure.
+There are two ways to achieve currying in Javascript. Either by using Bind method or by using Closure.
 
 function sum(a){
  return function(b){
