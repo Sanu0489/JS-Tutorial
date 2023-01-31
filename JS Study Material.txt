@@ -178,6 +178,8 @@ Generally we consider Promises in case of asynchronous process.
 The Promise object supports two properties: state and result.
 It can bed either pending or Succesful or Rejected state.
 
+Promise is an object in JavaScript that Represents Eventual Completion or Failure of an Asynchronous operation. In JavaScript, One can call a function within another function. The Outer function is known as higher order function and the inner function is known as callback. But it is not a good practice to use multiple callback functions one after another (Callback Hell). It decreases the readability of the code and developer may loss control of the program which is known as Inversion of Control. It is always recommended to use the promise to get rid of such problems. Promise Object contains two properties as State and Result. Initially it should be in Pending State. Once the execution is done it will be either resolved state or rejected. If and only if the promise is resolved successfully, it will call the callback function immediately. It is always better to use promise chaining instead of multiple callbacks. Now-a-days people use "async/await"  also instead of promise. But async-await also works in the same manner by returning a promise object which guarantees eventual completion or failure of an asynchronous operation in JavaScript. 
+
 ------------------------------------------------------------------------
 
 function sum(){
