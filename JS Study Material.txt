@@ -431,6 +431,19 @@ console.log(printMyName);
 console.log(Function.prototype.mybind);
 }
 x();
+-------------------------------------------------
+let arr = [12, 18, 14, 17, 16, 12, 13, 14, 16, 17, 17,18];
+
+function removeDuplicates(array, el, index){
+  const result = array.filter((el, index)=>array.indexOf(el) === index);  
+  return result;
+}
+
+let uniqueArray = removeDuplicates(arr);
+
+console.log(uniqueArray);
+
+o/p: [12, 18, 14, 17, 16, 13]
 
 --------------------------------------------------
 Function Currying in Javascript
