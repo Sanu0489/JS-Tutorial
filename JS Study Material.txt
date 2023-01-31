@@ -651,6 +651,29 @@ const output = users.reduce(function(acc, curr){
 },{});
 
 console.log(output);
+-------------------------------------------------
+
+// program to display a text using setTimeout method
+let arr = [12, 18, 14, 17, 16, 12, 13, 14, 16, 17, 17,18];
+
+//let uniqueArray = Array.from(new Set([...arr]));
+//let uniqueArray = [...new Set(arr)];
+
+function removeDuplicates(arr){
+    return arr.reduce((newArr,currval)=>{
+     if (!newArr.includes(currval)){
+          newArr.push(currval);
+     } 
+     return newArr;
+    })
+}
+
+let uniqueArray =removeDuplicates(arr);
+ 
+console.log(uniqueArray);
+
+o/p: - (6) [12, 18, 14, 17, 16, 13]
+
 --------------------------------------------------
 let obj1 = {"name":"Sanu","age":30,"sex":"Male"};
 let obj2 = {"city":"Kolkata", "zip":711401, "Phone":8116074024};
