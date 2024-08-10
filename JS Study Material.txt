@@ -75,7 +75,7 @@ CallStack -------  In JS everything is excuted in callstack
 
 Global Execution Context --------- Whenever any execution starts in JS engine a GEC has been created and it will be pushed to call stack
 
-Event Loop ---- It always checks into the Callback Queue. If anything found it will pushed to Call stack for execution once the callStack is empty
+Event Loop ---- It always checks into the Callback Queue. If anything found it will push the same to Call stack for execution once the callStack is empty
 
 Callback Queue ----- JS is single Threaded. It waits for none. So, if the function is asynchronous, after comletion it will be moved to Call back Queue
 
@@ -888,25 +888,454 @@ o/p:-
 [1, 2, 7]
 [3, 4, 5, 6]
 
+------------------------------------------------------------------------------------------------------------------------------------
+How to find the parameters from a URL in object format?
+
+const url = window.location.href;
+console.warn("URL -", url);
+const searchParams = window.location.search;
+console.warn("Search Params -  ", searchParams);
+const params = {};
+const paramPairs = searchParams.substring(1).split("&");
+console.warn("param Pairs = ", paramPairs);
+paramPairs.forEach((pair)=>{
+	const [key, value] = pair.split("=");
+	params[key] = value;
+})
+console.warn("params - ", params);
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Need to find out the total count of each fruits in an object as a key value pair. 
+
+const fruits = [
+  {Apple: 6, Orange: 7, Grape: 5},
+  {Orange: 2, Lemon: 3, Banana: 4},
+  {Lemon: 3, Orange: 4, pineapple: 4}
+]
+const countedFruits = {};
+fruits.forEach(el =>{
+  for(each in el){
+    if(countedFruits[each]){
+      countedFruits[each] = countedFruits[each] + el[each]
+    }
+    else{
+      countedFruits[each] = el[each]
+    }
+  }
+})
+console.log(countedFruits);
+
+-----------------------------------------------------------------------------------------------------------------------------------
+Handling Nested Array and Finding Unique Elements from the array:
+
+let arr = [1, [1, 2, [1, 2, 3, 5, [1, 2, 3, 4, 5]]]];
+let newArr = [... new Set(arr.flat(Infinity))];
+console.warn(newArr);
+
+Find out the identical key value pairs from two different objects:
+
+const input1 = {a: 1, b: 2, c: 3, d: 10, e: 12, f: 6} ;
+const input2 = {a: 5, b: 7, e: 12, d: 10};
+
+const output = {};
+
+for(let key in input1){
+    if(input1[key] === input2[key]){
+        output[key] = input1[key];
+    }
+}
+
+console.log(output);
+-----------------------------------------------------------------------------------------------------------------------------------
+OTP Generator Function: 
+
+let otpgenerator = (digit) => {
+    let num = '0123456789';
+    let otp = '';
+    for(let i=1; i<=digit; i++){
+        otp +=num[Math.floor(Math.random()*10)];
+    }
+    return otp;
+}
+
+console.log(otpgenerator(6));
+-----------------------------------------------------------------------------------------------------------------------------------
+Print 1 to 10 within an internal of 2 seconds :
+
+Approach 1 :
+
+let count = 0;
+function printValue(){
+    count ++;
+    if(count <= 10){
+        console.log(count);
+    setTimeout( printValue, 2000)
+    }
+}
+
+printValue();
+
+Approach 2:
+
+function x(){
+let c = 1;
+let timer = setInterval(()=>{
+    if (c === 10) {
+        clearInterval(timer);
+    }
+  console.log(c++);
+  },2000);
+}
+x();
+
+Approach 3:
+
+for (let i = 1; i <= 10; i++) {
+  setTimeout(() => {
+    console.log(i);
+  }, i * 2000); // Delay each iteration by 2 seconds
+}
+
+Approach 4:
+
+async function printNumbers() {
+  for (let i = 1; i <= 10; i++) {
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    console.log(i);
+  }
+}
+
+printNumbers();
+
+Approach 5:
+
+function* numberGenerator() {
+  for (let i = 1; i <= 10; i++) {
+    yield i;
+  }
+}
+
+const iterator = numberGenerator();
+const intervalId = setInterval(() => {
+  console.log(iterator.next().value);
+}, 2000);
+
+setTimeout(() => {
+  clearInterval(intervalId);
+}, 22000);
+
+----------------------------------------------------------------------------------------------------------------------------
+Infinite Currying:
+
+function multiply(x){
+    return function(y){
+        if(y){
+            return  multiply(x*y);
+        }else{
+            return x;
+        }
+    }
+}
+
+console.log(multiply(1)(2)(3)(4)(5)());
+
+---------------------------------------------------------------------------------------------------------------------------------
+How to reverse a string? 
+
+let str = "I am Sanu"; 
+console.log(str.split(' ').reverse().join(' ')); // Sanu am I
+console.log(str.split('').reverse().join('')); // unaS ma I
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Find the shortest string of an array with string elemnets:
+
+const fruits = ["Apple", "Banana", "Orange", "Grapes", "Mango", "Lichi"];
+
+function findShortest(arr){
+    return arr.reduce((shortest, current)=>{
+        return current.length < shortest.length ? current : shortest
+    }, arr[0])
+}
+
+console.log(findShortest(fruits));
+
+-----------------------------------------------------------------------------------------
+
+Polyfills:- 
+
+Polyfills are pieces of code that provide modern functionality to older browsers that lack native support for those features.
+
+Implementation of own map function using polyfill:
+
+Array.prototype.myMap = function (cb){
+    let temp = [];
+    for(let i = 0; i< this.length; i++){
+        temp.push(cb(this[i],i, this));
+    }
+    return temp;
+}
+
+const nums = [1,2,3,4];
+
+const multiplyByThree = nums.myMap((num, i , arr)=>{
+    return num * 3 + i * 2;
+})
+
+console.log(multiplyByThree);
+
+--------------------------------------------------------------------------------------------------------------
+
+Implementation of own filter function using polyfill:
+
+Array.prototype.myFilter = function (cb){
+    let temp = [];
+    for(let i = 0; i< this.length; i++){
+        if(cb(this[i],i, this)) {
+            temp.push(this[i]);
+        }
+    }
+    return temp;
+}
+
+const nums = [1,2,3,4];
+
+const EvenNumbers = nums.myFilter((num, i , arr)=>{
+    return num%2 === 0 ;
+})
+
+console.log(EvenNumbers);
+-----------------------------------------------------------------------------------------------------------------
+Implementation of own Reduce Function using polyfill:
+
+Array.prototype.myReduce = function (cb, initialValue){
+    let accumulator = initialValue;
+    for(let i = 0; i< this.length; i++){
+        accumulator = accumulator ? cb(accumulator, this[i], i, this) : this[i];
+    }
+    return accumulator;
+}
+
+const nums = [1,2,3,4];
+
+const multiply = nums.myReduce((acc, curr, i , arr)=>{
+    return acc * curr ;
+}, 1)
+
+console.log(multiply);
+--------------------------------------------------------------------------------------------------------------------------------
+Suppouse You have an array with repeating elements. You need to create an Object with the elemnts and their occurence as key value pair. 
+Please find key with max number of occurence within the object.
+
+function countOccurence(arr) {
+    let obj = {}
+    arr.forEach(item => {
+        if (obj[item]) {
+            obj[item]++;
+        } else {
+            obj[item] = 1;
+        }
+    });
+    return obj;
+}
+
+const array = [1, 2, 3, 4, 5, 1, 2, 2, 3, 4, 5, 5, 5];
+const result = countOccurence(array);
+console.log(result);
+
+let max = result[array[0]];
+for(let key in result){
+    if(result[key] > max){
+        max = result[key];
+        index = key;
+      }
+    }
+    console.log(`key:  ${index}`);
+    console.log(`value:  ${max}`);
+-----------------------------------------------------------------
+Output based Question:
+
+let a = true;
+let b = false;
+let c = null;
+
+if (c == undefined){
+    c= a+b;
+    console.log("The value of C is: ", c)
+}else{
+    console.log("a+b = ", a+b);
+}
+
+o/p: The value of C is:  1
+---------------------------------------------------------
+let x = 5;
+let y = x++ + ++x;
+console.log(y);
+console.log(x++ + ++x);
+console.log(y-- + --y);
+
+o/p: 
+12
+16
+22
+
+---------------------------------------------------------------------------
+
+let x = 10;
+{
+    let x = 20;
+    {
+        console.log(x);
+        let x = 30;
+        console.log(x);
+    }
+    console.log(x);
+}
+console.log(x);
+
+o/p:
+Reference Error (variable x is declared with let keyword and We are trying to access the vriable when x is in Temporal Dead Zone)
+30
+20
+10
+------------------------------------------------------------------------------------------------------------
+Implementing increment and decrement counter based on closure principal:
 
 
+function counter(type){
+    var count = 0;
+    
+    if(type === 'increment'){
+        return function incrementCounter(){
+        count ++;
+        console.log(count)
+    }
+    }else {
+        return function decrementCounter(){
+        count --;
+        console.log(count)
+    }
+    }
+}
 
+let counter1 = counter('increment');
+let counter2 = counter('decrement');
+counter1();
+counter2();
 
+o/p: 1, -1
 
+Here we are creating 2 different counter variable for 2 different operations. 
+But suppose, If I have to do both the operations on same count variable. 
+Please find this approach below with a much more clear code:
 
+function Counter(){
+    var count = 0;
+    this.increment = function(){
+        count++;
+        console.log(count);
+    }
+    this.decrement = function(){
+        count--;
+        console.log(count);
+    }
+}
 
+var counter1 = new Counter();
+counter1.increment();
+counter1.increment();
+counter1.decrement();
+-----------------------------------------------------------------
 
+ x = 10;
+console.log('x :', x);
+var x = 20;
+console.log('x :',x);
+setTimeout(()=>{
+    console.log('x',x)
+},5000);
+x = 30;
 
+o/p:
+x : 10
+x : 20
+x 30
 
+But If we declare this variable with let instead of var 
 
+ x = 10;
+console.log('x :', x);
+let x = 20;  // declare this variable with let instead of var
+console.log('x :',x);
+setTimeout(()=>{
+    console.log('x',x)
+},5000);
+x = 30;
 
+Now x will be in Temporal Dead Zone. 
+So, It will through a "ReferenceError: Cannot access 'x' before initialization"
+-----------------------------------------------------------------------------------
 
+console.log(10+20+"30")
+console.log(10+"20"+30)
+console.log("10"+20+30)
+console.log("10"-20+30)
+console.log(10-20+"30")
 
+o/p:
+3030
+102030
+102030
+20
+-1030
 
+Reason: The associativity is always left to Right. "+" operator acts as concatenation operator.
+"-" operator just tries to typecase it to a number initially
+-----------------------------------------------------------------------------------------------------
 
+const obj = Object.create({
+    height: 30
+})
+console.log(obj.height);
+delete obj.height;
+console.log(obj.height);
 
+o/p:
+30
+30
 
+const obj = {
+    height: 30
+}
+console.log(obj.height);
+delete obj.height;
+console.log(obj.height);
 
+o/p:
+30
+undefined 
+
+When you create an object with Object.cretae, it will store the properties in prototype. 
+---------------------------------------------------------------------------------------------------------------
+
+const original = {a:1, b:{c:2}};
+
+let shallowcopy = {...original}
+let deepcopy = JSON.parse(JSON.stringify(original))
+
+original.b.c= 10;
+
+console.log("Original", original);
+console.log("Shallowcopy",shallowcopy);
+console.log("deepcopy",deepcopy);
+
+o/p:
+Original { a: 1, b: { c: 10 } }
+Shallowcopy { a: 1, b: { c: 10 } }
+deepcopy { a: 1, b: { c: 2 } }
+
+---------------------------------------------------------------------------------------------------------------------
 
 
 
