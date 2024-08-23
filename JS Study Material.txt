@@ -76,6 +76,7 @@ CallStack -------  In JS everything is excuted in callstack
 Global Execution Context --------- Whenever any execution starts in JS engine a GEC has been created and it will be pushed to call stack
 
 Event Loop ---- It always checks into the Callback Queue. If anything found it will push the same to Call stack for execution once the callStack is empty
+Event Loop ---- It always checks into the Callback Queue. If anything found it will push the same to Call stack for execution once the callStack is empty
 
 Callback Queue ----- JS is single Threaded. It waits for none. So, if the function is asynchronous, after comletion it will be moved to Call back Queue
 
