@@ -1,6 +1,7 @@
 Topic Closure:
 
 In JavaScript, the inner function can access the variable declared in its Lexical Scope (Parent function). This special feature is known as Closure.
+A function along with lexical scope bundles together to form a closure.
 
 
 function x(){
@@ -30,7 +31,7 @@ function z(){
   }
    close(i)
  }
- console.log("Hi SP... Good Evening!!")
+ console.log("Hi Kishan... Good Afternoon!!")
 }
 
 --------------------------
@@ -45,7 +46,7 @@ function xyz(){
    close(i)
    console.log("Hello...!!!")
  }
- console.log("Hi Sanu... Good Morning!!")
+ console.log("Hi Virat... Good Afternoon!!")
 };
 --------------------
 
@@ -59,7 +60,7 @@ function abc(){
   }
    close(i)
  }
- console.log("Hi Sanu... Good Morning!!")
+ console.log("Hi Anurag... Good Afternoon!!")
 };
 
 ---------------------------
@@ -76,7 +77,8 @@ CallStack -------  In JS everything is excuted in callstack
 Global Execution Context --------- Whenever any execution starts in JS engine a GEC has been created and it will be pushed to call stack
 
 Event Loop ---- It always checks into the Callback Queue. If anything found it will push the same to Call stack for execution once the callStack is empty
-Event Loop ---- It always checks into the Callback Queue. If anything found it will push the same to Call stack for execution once the callStack is empty
+
+Call stack controls the execution context and execute them one by one
 
 Callback Queue ----- JS is single Threaded. It waits for none. So, if the function is asynchronous, after comletion it will be moved to Call back Queue
 
@@ -179,7 +181,12 @@ Generally we consider Promises in case of asynchronous process.
 The Promise object supports two properties: state and result.
 It can bed either pending or Succesful or Rejected state.
 
-Promise is an object in JavaScript that Represents Eventual Completion or Failure of an Asynchronous operation. In JavaScript, One can call a function within another function. The Outer function is known as higher order function and the inner function is known as callback. But it is not a good practice to use multiple callback functions one after another (Callback Hell). It decreases the readability of the code and developer may loss control of the program which is known as Inversion of Control. It is always recommended to use the promise to get rid of such problems. Promise Object contains two properties as State and Result. Initially it should be in Pending State. Once the execution is done it will be either resolved state or rejected. If and only if the promise is resolved successfully, it will call the callback function immediately. It is always better to use promise chaining instead of multiple callbacks. Now-a-days people use "async/await"  also instead of promise. But async-await also works in the same manner by returning a promise object which guarantees eventual completion or failure of an asynchronous operation in JavaScript. 
+Promise is an object in JavaScript that Represents Eventual Completion or Failure of an Asynchronous operation. 
+In JavaScript, One can call a function within another function. The Outer function is known as higher order function and the inner function is known as callback. But it is not a good practice to use multiple callback functions one after another (Callback Hell). 
+It decreases the readability of the code and developer may loss control of the program which is known as Inversion of Control. It is always recommended to use the promise to get rid of such problems. 
+Promise Object contains two properties as State and Result. Initially it should be in Pending State. Once the execution is done it will be either resolved state or rejected. 
+If and only if the promise is resolved successfully, it will call the callback function immediately. It is always better to use promise chaining instead of multiple callbacks. 
+Now-a-days people use "async/await"  also instead of promise. But async-await also works in the same manner by returning a promise object which guarantees eventual completion or failure of an asynchronous operation in JavaScript. 
 
 ------------------------------------------------------------------------
 
@@ -962,7 +969,7 @@ let otpgenerator = (digit) => {
 
 console.log(otpgenerator(6));
 -----------------------------------------------------------------------------------------------------------------------------------
-Print 1 to 10 within an internal of 2 seconds :
+Print 1 to 10 within an interval of 2 seconds :
 
 Approach 1 :
 
@@ -1052,7 +1059,7 @@ How to reverse a string?
 
 Find the shortest string of an array with string elemnets:
 
-const fruits = ["Apple", "Banana", "Orange", "Grapes", "Mango", "Lichi"];
+const fruits = ["Apple", "Banana", "Orange", "Date", "Grapes", "Mango", "Lichi"];
 
 function findShortest(arr){
     return arr.reduce((shortest, current)=>{
@@ -1126,8 +1133,8 @@ const multiply = nums.myReduce((acc, curr, i , arr)=>{
 
 console.log(multiply);
 --------------------------------------------------------------------------------------------------------------------------------
-Suppouse You have an array with repeating elements. You need to create an Object with the elemnts and their occurence as key value pair. 
-Please find key with max number of occurence within the object.
+Suppouse You have an array with repeating elements. You need to create an Object with the elements and their occurrence as key value pair. 
+Please find key with max number of occurrence within the object.
 
 function countOccurence(arr) {
     let obj = {}
@@ -1359,7 +1366,7 @@ o/p:
   5, 6, 7
 ]
 ----------------------------------------------------------------------------------------------------------------------------
-Write a function to provide the number of vowels in an arbitary sentence or word:
+Write a function to provide the number of vowels in any sentence or word:
 
 let str = "English Teacher"
 const vowels = ['a','e', 'i','o','u']
@@ -1393,8 +1400,8 @@ Relation between this Keyword and Arrow function in an Object:
 
 
 let obj = {
-    name: 'Sanu',
-    age: '34',
+    name: 'Jagadish',
+    age: '32',
     getIntro: ()=> {
         return (`This is ${this.name}. I am ${this.age} now.`)
     }
@@ -1507,9 +1514,115 @@ Circumference Calculation :  [
 ]
 Circumference Diameter :  [ 2, 4, 6, 8, 10 ]
 -------------------------------------------------------------------------------------------------------------------------------
+Find the 2nd largest element of and Array:
 
+Approach 1:
 
+const arr = [1, 3, 2, 3, 5, 7, 8, 8, 6, 5, 4, 9, 5, 4, 2];
+let temp = [...(new Set(arr))];
+console.log(temp);
+temp = temp.sort((a,b)=> a-b);
+console.log(temp);
+console.log(temp[(temp.length -1) -1]);
 
+Approach 2:
 
+const a1 = [1, 3, 2, 3, 5, 7, 8, 8, 6, 5, 4, 9, 5, 4, 2];
+function findSecondLargest(arr) {
+    if (arr.length < 2) return null;
 
+    let max = -Infinity;
+    let secondMax = -Infinity;
+
+    for (let num of arr) {
+        if (num > max) {
+            secondMax = max;
+            max = num;
+        } else if (num > secondMax && num < max) {
+            secondMax = num;
+        }
+    }
+
+    return secondMax === -Infinity ? null : secondMax;
+}
+
+console.log(findSecondLargest(a1));
+
+=================================================================================================================================
+
+*****How does bind work????******** [ Once bind is attached to an object, we can't change is]
+
+function show() {
+  console.log(this.name);
+}
+
+const obj1 = { name: "Subhransu" };
+const obj2 = { name: "Rahul" };
+
+const firstBind = show.bind(obj1);
+const secondBind = firstBind.bind(obj2);
+
+firstBind();
+secondBind();
+show.call(obj2);
+
+*********************************************************************
+o/p : 
+
+Subhransu
+Subhransu
+Rahul  
+
+Root Cause -   bind() creates a new function with a permanently fixed "this" value.
+
+==========================================================================
+
+***Find the longest Element of an array or List****
+
+const subject = ["HTML", "CSS", "JavaScript", "React"];
+function findLongest(sub){
+let longest = sub[0];
+for(let i of sub){
+    longest = i.length > longest.length ? i : longest
+}
+    return longest;
+}
+
+console.log(findLongest(subject));
+
+=========================================================
+
+*** Reverse a string and make it Init Capital too ****
+
+const name = "Subhransu";
+
+function reverseIt(n){
+const reversed = [...n.toLowerCase()].reverse().join("");
+const result = reversed[0].toUpperCase() + reversed.slice(1);
+return result
+}
+console.log(reverseIt(name));
+
+-------------------------------------------------------
+
+o/p- 
+
+Usnarhbus
+=======================================================
+
+What is Protype in JavaScript?? What is Prototypal Inheritence in JavaScript??
+
+In JavaScript, a prototype is an object that another object inherits properties and methods from.
+
+Explanation - Suppose we create an Array and try to access property like length, map, filter, flat etc. All of them should be defined somewhere otherwise How could we access all these!!!
+The properties are deined in the Prorotype of Array which is defined by Array.__proto__ .
+
+When We declare some methods as "  Array.prototype.myMethod " this myMethod can be accessed by all the arrays.
+
+array.__proto__ is an Object and array.__proto__.__proto__ is null.
+
+In JavaScript, every object has an internal link to another object called its prototype. When we try to access a property or method, JavaScript first checks the object itself. 
+If not found, it checks its prototype, then the prototype’s prototype, and continues until it reaches null. This mechanism is called the prototype chain and enables prototypal inheritance.
+
+========================================================================================================================================================================
 
