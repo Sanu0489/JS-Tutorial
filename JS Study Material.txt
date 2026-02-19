@@ -1626,3 +1626,57 @@ If not found, it checks its prototype, then the prototype’s prototype, and con
 
 ========================================================================================================================================================================
 
+What is the difference between callback hell and promise chaining?
+
+Callback hell refers to deeply nested callbacks that make asynchronous code hard to read and maintain. 
+Promise chaining solves this by allowing asynchronous operations to run sequentially using .then() methods in a flat structure, improving readability and centralized error handling.
+
+===============================================================================================================================================
+Map, Filter, Reduce Example : --
+
+
+const num = [1, 2, 3, 4, 5];
+
+ const newNum1 = num.map((n)=>{
+    if (n%2 === 0) return;
+    return n*2;    
+ });
+
+const newNum2 = num.filter((n)=> n%2 !== 0).map((n1)=> n1 *2);
+
+const newNum3 = num.reduce((acc, curr) => {
+        if(curr%2 !== 0){
+            acc.push(curr*2);
+        }
+        return acc;
+}, [])
+
+console.log(newNum);
+console.log(newNum1);
+console.log(newNum2);
+========================================================================================================================================================
+
+Finding First Repeating Character from a String:
+
+let x = "success";
+let y = x.split('');
+
+console.log(y);
+
+let temp = {};
+
+for(let key of y){
+    if(!temp[key]){
+        temp[key] = 1;
+    }else{
+        temp[key] = temp[key] + 1;
+        console.log("First Repeting Character is ", key);
+        break;
+    }
+}
+
+
+
+
+
+
