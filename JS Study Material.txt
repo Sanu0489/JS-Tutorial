@@ -1675,6 +1675,40 @@ for(let key of y){
     }
 }
 
+====================================================================================
+Input - aaabbcdddd , Output - a3b2c1d4
+
+function compress(str) {
+    if (!str) return "";
+
+    let result = "";
+    let count = 1;
+
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === str[i + 1]) {
+            count++;
+        } else {
+            result += str[i] + count;
+            count = 1;
+        }
+    }
+
+    return result;
+}
+
+console.log(compress("aaabbc")); // a3b2c1
+
+================================================================================
+this keyword in JavaScript-
+
+this is determined at runtime based on the function’s call-site. In regular functions, it depends on how the function is invoked. In arrow functions, it is lexically inherited from the surrounding scope. It can also be explicitly controlled using call, apply, bind, or by using the new keyword.
+
+this in JavaScript is determined at runtime based on the function’s call-site. It follows four binding rules: new binding, explicit binding, implicit binding, and default binding. Arrow functions do not bind their own this and instead inherit it lexically from the surrounding scope.
+
+=======================================================================================
+
+
+
 
 
 
