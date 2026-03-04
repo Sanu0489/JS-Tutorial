@@ -188,6 +188,11 @@ Promise Object contains two properties as State and Result. Initially it should 
 If and only if the promise is resolved successfully, it will call the callback function immediately. It is always better to use promise chaining instead of multiple callbacks. 
 Now-a-days people use "async/await"  also instead of promise. But async-await also works in the same manner by returning a promise object which guarantees eventual completion or failure of an asynchronous operation in JavaScript. 
 
+A Promise is a JavaScript object that represents the eventual completion or failure of an asynchronous operation and its resulting value.
+It helps avoid callback hell and inversion of control by providing a structured way to handle asynchronous code.
+A Promise has three states: pending, fulfilled, and rejected. Initially, it is pending, and it transitions to fulfilled when resolve is called or rejected when reject is called.
+The Promise constructor takes an executor function which receives resolve and reject functions, and this executor runs immediately when the Promise is created.
+
 ------------------------------------------------------------------------
 
 function sum(){
