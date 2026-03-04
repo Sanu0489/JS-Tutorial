@@ -193,6 +193,9 @@ It helps avoid callback hell and inversion of control by providing a structured 
 A Promise has three states: pending, fulfilled, and rejected. Initially, it is pending, and it transitions to fulfilled when resolve is called or rejected when reject is called.
 The Promise constructor takes an executor function which receives resolve and reject functions, and this executor runs immediately when the Promise is created.
 
+In callback-based asynchronous code, we pass our callback functions to other APIs or libraries and rely on them to execute our callback correctly. This leads to inversion of control because we lose control over when and how our callback will be executed.
+Promises solve this problem by returning a Promise object immediately. Instead of passing callbacks, we attach handlers like .then() and .catch() to the Promise. This gives developers better control over asynchronous execution and improves readability and error handling.
+
 ------------------------------------------------------------------------
 
 function sum(){
