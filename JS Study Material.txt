@@ -80,7 +80,7 @@ Event Loop ---- It always checks into the Callback Queue. If anything found it w
 
 Call stack controls the execution context and execute them one by one
 
-Callback Queue ----- JS is single Threaded. It waits for none. So, if the function is asynchronous, after comletion it will be moved to Call back Queue
+Callback Queue ----- JS is single Threaded. It waits for none. So, if the function is asynchronous, after completion it will be moved to Call back Queue
 
 Microtask Queue ----------- Same as call back Queue with Higher Priority (Network calls, Promises generally goes to Microtask Queue)
 
@@ -91,14 +91,14 @@ One can assign a function to a variable also. In such case, the higher Order fun
 
 A programming language is said to have First class function when the function in that language are treated as any other variable.
 
-Undefined and Not defined are different thing in Javascript. Undefined is a Primitive data type in Javascript.
-Array and Function both are reffered to as Object or Reference type in JavaScript.
+Undefined and Not defined are different thing in JavaScript. Undefined is a Primitive data type in JavaScript.
+Array and Function both are referred to as Object or Reference type in JavaScript.
 
 -------------------------------------------------------
 
 Hoisting: - Unlike any other language in JavaScript, the JS engine allocates memory before the execution of a single line JavaScript code. 
 It creates Global Execution Context and allocates memory for each variable and function.
-Initially any variable hold the value as undefined.This overall concept is known as Hoisting in JavaScript.
+Initially any variable hold the value as undefined. This overall concept is known as Hoisting in JavaScript.
 
 We can declare a variable in JavaScript with three different Keyword as 'var', 'let' and 'const'.
 Among them var belongs to the window object. It has its global scope. But let and const don't have the global scope. Instead They have block scope.
@@ -110,11 +110,11 @@ We shall get Reference error as the variable is not defined while trying to acce
 If we declare a variable as constant and try to reassign the same variable, we shall get a type Error as the value of constant variable cannot be reassigned.
 
 Temporal Dead Zone -- 
-In case of let and contant variable, once the variable is decalred but its initialization is not done. 
+In case of let and constant variable, once the variable is declared but its initialization is not done. 
 Then we can say that the variable is in Temporal Dead Zone.
 
 In GEC the memory allocation for var, let and const variables are done differently.
-var is stored in GLobal memory whereas let and const are stored in script memory.
+var is stored in Global memory whereas let and const are stored in script memory.
 
 ----------------------------------------------------
 What will be the o/p of the below code snippet?
@@ -173,7 +173,7 @@ Until the completion of first function, the second one waits. At the end of the 
 
 Promises in JavaScript:-
 
-Promise object represents an eventual completion or failure of an asynchronous Javascript operation. 
+Promise object represents an eventual completion or failure of an asynchronous JavaScript operation. 
 
 Whenever a function is executing in JavaScript, it can return a function as Promise which will take two parameters as resolve and reject. 
 Generally we consider Promises in case of asynchronous process. 
@@ -188,15 +188,9 @@ Promise Object contains two properties as State and Result. Initially it should 
 If and only if the promise is resolved successfully, it will call the callback function immediately. It is always better to use promise chaining instead of multiple callbacks. 
 Now-a-days people use "async/await"  also instead of promise. But async-await also works in the same manner by returning a promise object which guarantees eventual completion or failure of an asynchronous operation in JavaScript. 
 
-A Promise is a JavaScript object that represents the eventual completion or failure of an asynchronous operation and its resulting value.
-It helps avoid callback hell and inversion of control by providing a structured way to handle asynchronous code.
-A Promise has three states: pending, fulfilled, and rejected. Initially, it is pending, and it transitions to fulfilled when resolve is called or rejected when reject is called.
-The Promise constructor takes an executor function which receives resolve and reject functions, and this executor runs immediately when the Promise is created.
-
-In callback-based asynchronous code, we pass our callback functions to other APIs or libraries and rely on them to execute our callback correctly. This leads to inversion of control because we lose control over when and how our callback will be executed.
-Promises solve this problem by returning a Promise object immediately. Instead of passing callbacks, we attach handlers like .then() and .catch() to the Promise. This gives developers better control over asynchronous execution and improves readability and error handling.
-
 ------------------------------------------------------------------------
+
+Async/Await basically use to handle asynchronous operation in more structured way in JavaScript. 
 
 function sum(){
   let sum = 0;
@@ -1103,7 +1097,7 @@ console.log(multiplyByThree);
 
 --------------------------------------------------------------------------------------------------------------
 
-Implementation of own filter function using polyfill:
+Implementation of own filter function using Polyfills:
 
 Array.prototype.myFilter = function (cb){
     let temp = [];
@@ -1125,23 +1119,57 @@ console.log(EvenNumbers);
 -----------------------------------------------------------------------------------------------------------------
 Implementation of own Reduce Function using polyfill:
 
-Array.prototype.myReduce = function (cb, initialValue){
-    let accumulator = initialValue;
-    for(let i = 0; i< this.length; i++){
-        accumulator = accumulator ? cb(accumulator, this[i], i, this) : this[i];
+Array.prototype.myReduce = function(cb, initial){
+    if(typeof(cb)!=="function"){
+        throw new TypeError(cb , "is not a function");
     }
-    return accumulator;
+    let acc;
+    let start = 0;
+    if(typeof(initial) === "undefined"){
+        acc = this[0];
+        start =1;
+    }else{
+        acc = initial;
+    }
+    
+    for(let i=start; i< this.length; i++){
+        acc = cb(acc, this[i], i , this)
+    }
+    return acc;
 }
 
-const nums = [1,2,3,4];
+let sum = [1,2,3,4,5].myReduce((acc, curr)=>{
+    return acc + curr;
+},0);
 
-const multiply = nums.myReduce((acc, curr, i , arr)=>{
-    return acc * curr ;
-}, 1)
+let multiply = [1,2,3,4,5].myReduce((acc, curr)=>{
+    return acc * curr;
+},1);
 
-console.log(multiply);
+console.log("sum ", sum ,"multiply ",multiply);------------------------------------------------------------------------------------------------------------------
+Implementation of Flat using polyfill:
+
+const arr = [1, [1,2,3], [3,4,[1,2,5]]];
+
+Array.prototype.myFlat = function(depth = 1) {
+  if (!Array.isArray(this)) {
+    throw new TypeError("myFlat called on non-array");
+  }
+
+  return this.reduce((acc, curr) => {
+    if (Array.isArray(curr) && depth > 0) {
+      acc.push(...curr.myFlat(depth === Infinity ? Infinity : depth - 1));
+    } else {
+      acc.push(curr);
+    }
+    return acc;
+  }, []);
+};
+
+console.log(arr.myFlat(Infinity));
+
 --------------------------------------------------------------------------------------------------------------------------------
-Suppouse You have an array with repeating elements. You need to create an Object with the elements and their occurrence as key value pair. 
+Suppose You have an array with repeating elements. You need to create an Object with the elements and their occurrence as key value pair. 
 Please find key with max number of occurrence within the object.
 
 function countOccurence(arr) {
@@ -1714,6 +1742,95 @@ this is determined at runtime based on the function’s call-site. In regular fu
 this in JavaScript is determined at runtime based on the function’s call-site. It follows four binding rules: new binding, explicit binding, implicit binding, and default binding. Arrow functions do not bind their own this and instead inherit it lexically from the surrounding scope.
 
 =======================================================================================
+
+var employee = {"company": "xyz"};
+var e1 = Object.create(employee);
+delete e1.company;
+console.log(e1.company);
+
+o/p- xyz
+
+Object.create() does not perform copying (neither shallow nor deep); it creates a new object with a specified prototype, enabling property access via the prototype chain. As company is not its own property, so It will not delete it from e1. We can delete the property only from the base object that is employee.
+========================================================================================================
+let undefined = "Hello";
+console.log(type Of undefined);
+
+This will return as "String". Because undefined is not a reserved or restricted keyword in JavaScript.
+
+=========================================================================================================================================
+
+Input : {a:{b:{c:3}}}
+output : a.b.c = 3;
+
+let currentObj = { a: {b: {c:3} } };
+let res;
+while (typeof currentObj === "object"){
+    let currentKey = Object.keys(currentObj)[0];
+    res += currentKey;
+    
+    if(typeof currentObj[currentKey] === "object"){
+        currentObj = currentObj[currentKey];
+        res+= ".";
+    }else{
+        res+= "=" + currentObj;
+    }
+}
+
+console.log(res);let obj = { a: { b: { c: 3 } } };
+
+function test(currentObj) {
+  let res = "";
+  let currentKey;
+
+  while (typeof currentObj === "object") {
+    currentKey = Object.keys(currentObj)[0];
+    res += currentKey;
+
+    if (typeof currentObj[currentKey] === "object") {
+      res += ".";
+    }
+
+    currentObj = currentObj[currentKey];
+  }
+
+  res += "=" + currentObj;
+  return res;
+}
+
+console.log(test(obj));
+
+===================================================================================================
+
+Find the Maximum Occurrence of vowel in a given string : 
+
+let name = "Subhransu Porel"
+
+function checkVowel(str){
+    let vowel = ['a','e','i','o','u'];
+    let s = str.toLowerCase().split('');
+    let count = {};
+    for(let i = 0; i< s.length; i++){
+       if(vowel.includes(s[i])){
+           if(!count[s[i]]){
+               count[s[i]] = 1;
+           }else{
+               count[s[i]] +=1;
+           }
+       }
+    }
+    let maxKey = Object.keys(count)[0];
+    let max = count[maxKey];
+    for(let key in count){
+        if(count[key] > max){
+            maxKey = key;
+            max = count[key];
+        }
+    }
+    return {max : maxKey};
+}
+
+console.log(checkVowel(name)); 
+
 
 
 
